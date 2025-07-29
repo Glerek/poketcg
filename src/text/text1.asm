@@ -1,3 +1,6 @@
+NullText:
+	done
+
 HandText:
 	text "Hand"
 	done

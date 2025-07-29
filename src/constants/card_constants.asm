@@ -227,4 +227,8 @@
 	const POKEMON_FLUTE               ; $e2
 	const GAMBLER                     ; $e3
 	const RECYCLE                     ; $e4
+
+	; Custom cards
+	const MIRAIDONEX 				  ; $e5
+
 DEF NUM_CARDS EQU const_value - 1

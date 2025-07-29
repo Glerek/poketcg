@@ -2354,3 +2354,7 @@ GamblerCardGfx::
 RecycleCardGfx::
 	INCBIN "gfx/cards/recycle.2bpp"
 	INCBIN "gfx/cards/recycle.pal"
+
+MiraidonExCardGfx::
+	INCBIN "gfx/cards/miraidonex.2bpp"
+	INCBIN "gfx/cards/miraidonex.pal"

@@ -183,3 +183,18 @@ RecycleDescription:
 	line "in your discard pile on top of your"
 	line "deck."
 	done
+
+MiraidonExName:
+	text "Miraidon Ex"
+	done
+
+MiraidonExDescription:
+	text "It was given the name Miraidon by"
+	line "the professor who discovered it."
+	line "Its ecology and other details are"
+	line "unknown."
+	done
+
+MiraidonCatName:
+	text "Future Dragon"
+	done

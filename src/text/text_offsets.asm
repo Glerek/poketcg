@@ -1,7 +1,7 @@
-	const_def 1
+	const_def
 
 TextOffsets::
-	dwb $0000, $00                                                 ; 0x0000
+	textpointer NullText                                           ; 0x0000
 	textpointer HandText                                           ; 0x0001
 	textpointer CheckText                                          ; 0x0002
 	textpointer AttackText                                         ; 0x0003
@@ -2991,3 +2991,6 @@ TextOffsets::
 	textpointer GamblerDescription                                 ; 0x0bab
 	textpointer RecycleName                                        ; 0x0bac
 	textpointer RecycleDescription                                 ; 0x0bad
+	textpointer MiraidonExName
+	textpointer MiraidonExDescription
+	textpointer MiraidonCatName

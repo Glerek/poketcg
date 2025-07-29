@@ -232,6 +232,7 @@ CardPointers::
 	dw PokemonFluteCard
 	dw GamblerCard
 	dw RecycleCard
+	dw MiraidonExCard
 	dw NULL
 	assert_table_length NUM_CARDS + 2
 
@@ -10222,3 +10223,54 @@ RecycleCard:
 	dw RecycleEffectCommands ; effect commands
 	tx RecycleDescription ; description
 	dw NONE ; description (cont)
+
+MiraidonExCard:
+	db TYPE_PKMN_LIGHTNING ; type
+	gfx MiraidonExCardGfx ; gfx
+	tx MiraidonExName ; name
+	db STAR ; rarity
+	db COLOSSEUM | NONE ; sets
+	db MIRAIDONEX
+	db 220 ; hp
+	db BASIC ; stage
+	dw NONE ; pre-evo name
+
+	; attack 1
+	energy COLORLESS, 1 ; energies
+	tx TackleName ; name
+	dw NONE ; description
+	dw NONE ; description (cont)
+	db 10 ; damage
+	db DAMAGE_NORMAL ; category
+	dw NONE ; effect commands
+	db NONE ; flags 1
+	db NONE ; flags 2
+	db NONE ; flags 3
+	db 0
+	db ATK_ANIM_HIT ; animation
+
+	; attack 2
+	energy 0 ; energies
+	dw NONE ; name
+	dw NONE ; description
+	dw NONE ; description (cont)
+	db 0 ; damage
+	db DAMAGE_NORMAL ; category
+	dw NONE ; effect commands
+	db NONE ; flags 1
+	db NONE ; flags 2
+	db NONE ; flags 3
+	db 0
+	db ATK_ANIM_NONE ; animation
+
+	db 1 ; retreat cost
+	db WR_FIGHTING ; weakness
+	db NONE ; resistance
+	tx MiraidonCatName ; category
+	db 255 ; Pokedex number
+	db 0
+	db 50 ; level
+	db 2, 11 ; length
+	dw 14 * 10 ; weight
+	tx MiraidonExDescription ; description
+	db 0
