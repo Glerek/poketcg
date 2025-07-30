@@ -6,6 +6,7 @@ BoosterSetRarityAmountsTable:
 	db 1, 5, 3, 1 ; EVOLUTION
 	db 0, 6, 3, 1 ; MYSTERY
 	db 0, 6, 3, 1 ; LABORATORY
+	db 0, 5, 3, 2 ; GENESIS
 
 MACRO booster_set
 	db \1 >> 4
@@ -453,4 +454,20 @@ BoosterPack_RandomEnergies::
 	db  0 ; Psychic Type Chance
 	db  0 ; Colorless Type Chance
 	db  0 ; Trainer Card Chance
+	db  0 ; Energy Card Chance
+
+	
+BoosterPack_GenesisNeutral::
+	booster_set GENESIS ; booster pack set
+	dw NULL ; energy or energy generation function
+
+; Card Type Chances
+	db 20 ; Grass Type Chance
+	db 20 ; Fire Type Chance
+	db 20 ; Water Type Chance
+	db 20 ; Lightning Type Chance
+	db 20 ; Fighting Type Chance
+	db 20 ; Psychic Type Chance
+	db 20 ; Colorless Type Chance
+	db 20 ; Trainer Card Chance
 	db  0 ; Energy Card Chance

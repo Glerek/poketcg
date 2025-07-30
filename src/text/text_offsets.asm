@@ -600,7 +600,7 @@ TextOffsets::
 	textpointer Item2EvolutionText                                 ; 0x0254
 	textpointer Item3MysteryText                                   ; 0x0255
 	textpointer Item4LaboratoryText                                ; 0x0256
-	textpointer Item5PromotionalCardText                           ; 0x0257
+	textpointer Item6PromotionalCardText                           ; 0x0257
 	textpointer ViewWhichCardFileText                              ; 0x0258
 	textpointer EmptyPromotionalCardText                           ; 0x0259
 	textpointer SCardsText                                         ; 0x025a
@@ -2994,3 +2994,5 @@ TextOffsets::
 	textpointer MiraidonExName
 	textpointer MiraidonExDescription
 	textpointer MiraidonCatName
+	textpointer Item5GenesisText
+	textpointer GenesisBoosterText

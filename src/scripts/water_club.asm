@@ -53,7 +53,7 @@ Script_BeatSara:
 	start_script
 	max_out_event_value EVENT_BEAT_SARA
 	print_npc_text SaraPlayerWon1Text
-	give_booster_packs BOOSTER_COLOSSEUM_WATER, BOOSTER_COLOSSEUM_WATER, NO_BOOSTER
+	give_booster_packs BOOSTER_GENESIS_NEUTRAL, BOOSTER_GENESIS_NEUTRAL, NO_BOOSTER
 	print_npc_text SaraPlayerWon2Text
 	quit_script_fully
 

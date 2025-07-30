@@ -17,6 +17,7 @@ DEF NUM_BOOSTER_CARD_TYPES EQU const_value
 	const BOOSTER_EVOLUTION  ; $01
 	const BOOSTER_MYSTERY    ; $02
 	const BOOSTER_LABORATORY ; $03
+	const BOOSTER_GENESIS	 ; $04
 
 	const_def
 	const BOOSTER_COLOSSEUM_NEUTRAL           ; $00
@@ -48,6 +49,7 @@ DEF NUM_BOOSTER_CARD_TYPES EQU const_value
 	const BOOSTER_ENERGY_WATER_FIGHTING       ; $1a
 	const BOOSTER_ENERGY_GRASS_PSYCHIC        ; $1b
 	const BOOSTER_ENERGY_RANDOM               ; $1c
+	const BOOSTER_GENESIS_NEUTRAL             ; $1d
 
 DEF NUM_BOOSTERS EQU const_value
 DEF NO_BOOSTER EQU $ff

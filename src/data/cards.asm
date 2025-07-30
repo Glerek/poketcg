@@ -9877,7 +9877,7 @@ BillCard:
 	gfx BillCardGfx ; gfx
 	tx BillName ; name
 	db CIRCLE ; rarity
-	db COLOSSEUM | NONE ; sets
+	db GENESIS | NONE ; sets
 	db BILL
 	dw BillEffectCommands ; effect commands
 	tx BillDescription ; description
@@ -9998,7 +9998,7 @@ EnergyRemovalCard:
 	gfx EnergyRemovalCardGfx ; gfx
 	tx EnergyRemovalName ; name
 	db CIRCLE ; rarity
-	db MYSTERY | NONE ; sets
+	db GENESIS | NONE ; sets
 	db ENERGY_REMOVAL
 	dw EnergyRemovalEffectCommands ; effect commands
 	tx EnergyRemovalDescription ; description
@@ -10020,7 +10020,7 @@ SwitchCard:
 	gfx SwitchCardGfx ; gfx
 	tx SwitchName ; name
 	db CIRCLE ; rarity
-	db COLOSSEUM | NONE ; sets
+	db GENESIS | NONE ; sets
 	db SWITCH
 	dw SwitchEffectCommands ; effect commands
 	tx SwitchDescription ; description
@@ -10108,7 +10108,7 @@ ItemFinderCard:
 	gfx ItemFinderCardGfx ; gfx
 	tx ItemFinderName ; name
 	db STAR ; rarity
-	db COLOSSEUM | NONE ; sets
+	db GENESIS | NONE ; sets
 	db ITEM_FINDER
 	dw ItemFinderEffectCommands ; effect commands
 	tx ItemFinderDescription ; description
@@ -10119,7 +10119,7 @@ GustOfWindCard:
 	gfx GustOfWindCardGfx ; gfx
 	tx GustOfWindName ; name
 	db CIRCLE ; rarity
-	db EVOLUTION | NONE ; sets
+	db GENESIS | NONE ; sets
 	db GUST_OF_WIND
 	dw GustOfWindEffectCommands ; effect commands
 	tx GustOfWindDescription ; description
@@ -10141,7 +10141,7 @@ PotionCard:
 	gfx PotionCardGfx ; gfx
 	tx PotionName ; name
 	db CIRCLE ; rarity
-	db COLOSSEUM | NONE ; sets
+	db GENESIS | NONE ; sets
 	db POTION
 	dw PotionEffectCommands ; effect commands
 	tx PotionDescription ; description
@@ -10174,7 +10174,7 @@ ReviveCard:
 	gfx ReviveCardGfx ; gfx
 	tx ReviveName ; name
 	db DIAMOND ; rarity
-	db COLOSSEUM | NONE ; sets
+	db GENESIS | NONE ; sets
 	db REVIVE
 	dw ReviveEffectCommands ; effect commands
 	tx ReviveDescription ; description
@@ -10185,7 +10185,7 @@ MaintenanceCard:
 	gfx MaintenanceCardGfx ; gfx
 	tx MaintenanceName ; name
 	db DIAMOND ; rarity
-	db LABORATORY | NONE ; sets
+	db GENESIS | NONE ; sets
 	db MAINTENANCE
 	dw MaintenanceEffectCommands ; effect commands
 	tx MaintenanceDescription ; description
@@ -10196,7 +10196,7 @@ PokemonFluteCard:
 	gfx PokemonFluteCardGfx ; gfx
 	tx PokemonFluteName ; name
 	db DIAMOND ; rarity
-	db EVOLUTION | NONE ; sets
+	db GENESIS | NONE ; sets
 	db POKEMON_FLUTE
 	dw PokemonFluteEffectCommands ; effect commands
 	tx PokemonFluteDescription ; description
@@ -10229,7 +10229,7 @@ MiraidonExCard:
 	gfx MiraidonExCardGfx ; gfx
 	tx MiraidonExName ; name
 	db STAR ; rarity
-	db COLOSSEUM | NONE ; sets
+	db GENESIS | NONE ; sets
 	db MIRAIDONEX
 	db 220 ; hp
 	db BASIC ; stage

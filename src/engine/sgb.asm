@@ -842,6 +842,10 @@ SGBData_LaboratoryBooster:
 	dw $20 ; length
 	INCBIN "data/sgb_data/laboratory_booster_pals.bin.lz"
 
+SGBData_GenesisBooster:
+	dw $20 ; length
+	INCBIN "data/sgb_data/genesis_booster_pals.bin.lz"
+
 SGBData_PlayerPortraitPals:
 	dw $20 ; length
 	INCBIN "data/sgb_data/player_pals.bin.lz"

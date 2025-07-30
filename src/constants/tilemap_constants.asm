@@ -105,5 +105,7 @@
 	const TILEMAP_COPYRIGHT_CGB                    ; $67
 	const TILEMAP_NINTENDO                         ; $68
 	const TILEMAP_COMPANIES                        ; $69
+	const TILEMAP_GENESIS                          ; $6a
+	const TILEMAP_GENESIS_CGB                      ; $6b
 
 DEF NUM_TILEMAPS EQU const_value

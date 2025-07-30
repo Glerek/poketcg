@@ -27,5 +27,6 @@
 	const SCENE_COPYRIGHT                     ; $19
 	const SCENE_JAPANESE_TITLE_SCREEN_2_COPY  ; $1a
 	const SCENE_COLOR_PALETTE                 ; $1b
+	const SCENE_GENESIS_BOOSTER		  		  ; $1c
 
 DEF NUM_SCENES EQU const_value

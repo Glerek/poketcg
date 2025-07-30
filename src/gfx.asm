@@ -2358,3 +2358,25 @@ RecycleCardGfx::
 MiraidonExCardGfx::
 	INCBIN "gfx/cards/miraidonex.2bpp"
 	INCBIN "gfx/cards/miraidonex.pal"
+
+SECTION "Gfx 13", ROMX
+
+Genesis1Gfx::
+	dw 96
+	INCBIN "gfx/booster_packs/genesis1.2bpp"
+
+Genesis2Gfx::
+	dw 86
+	INCBIN "gfx/booster_packs/genesis2.2bpp"
+
+GenesisTilemap::
+	INCBIN "data/maps/tiles/dimensions/genesis.dimensions"
+	dw NULL
+	db FALSE ; cgb mode
+	INCBIN "data/maps/tiles/gb/genesis.bin.lz"
+
+GenesisCGBTilemap::
+	INCBIN "data/maps/tiles/dimensions/genesis.dimensions"
+	dw NULL
+	db TRUE ; cgb mode
+	INCBIN "data/maps/tiles/cgb/genesis.bgmap.lz"

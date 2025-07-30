@@ -28,6 +28,7 @@ ScenePointers:
 	dw Scene_Copyright
 	dw Scene_JapaneseTitleScreen2
 	dw Scene_ColorPalette
+	dw Scene_GenesisBooster
 	assert_table_length NUM_SCENES
 
 ; format:
@@ -260,3 +261,13 @@ Scene_JapaneseTitleScreen2:
 	db PALETTE_109, PALETTE_100, $00
 	db TILEMAP_JAPANESE_TITLE_SCREEN_2, TILEMAP_JAPANESE_TITLE_SCREEN_2_CGB, $01, $00
 	db $00
+
+Scene_GenesisBooster: 
+	dw SGBData_GenesisBooster
+	dw NULL
+	db PALETTE_108, PALETTE_104, $01
+	db TILEMAP_GENESIS, TILEMAP_GENESIS_CGB, $80, $00
+	db SPRITE_BOOSTER_PACK_OAM
+	db PALETTE_117, PALETTE_117, $00
+	db $ff, SPRITE_ANIM_189, $00, $00
+	dw $00

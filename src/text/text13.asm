@@ -198,3 +198,11 @@ MiraidonExDescription:
 MiraidonCatName:
 	text "Future Dragon"
 	done
+
+GenesisBoosterText:
+	text "Genesis"
+	done
+
+Item5GenesisText:
+	text "5. Genesis"
+	done

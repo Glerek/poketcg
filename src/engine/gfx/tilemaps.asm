@@ -113,4 +113,6 @@ Tilemaps:
 	tilemap CopyrightCGBTilemap,               TILESET_COPYRIGHT                   ; TILEMAP_COPYRIGHT_CGB
 	tilemap NintendoTilemap,                   TILESET_NINTENDO                    ; TILEMAP_NINTENDO
 	tilemap CompaniesTilemap,                  TILESET_COMPANIES                   ; TILEMAP_COMPANIES
+	tilemap GenesisTilemap,                    TILESET_GENESIS_1                   ; TILEMAP_GENESIS
+	tilemap GenesisCGBTilemap,                 TILESET_GENESIS_2                   ; TILEMAP_GENESIS_CGB
 	assert_table_length NUM_TILEMAPS

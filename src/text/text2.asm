@@ -1779,8 +1779,8 @@ Item4LaboratoryText:
 	text "4. Laboratory"
 	done
 
-Item5PromotionalCardText:
-	text "5. Promotional Card"
+Item6PromotionalCardText:
+	text "6. Promotional Card"
 	done
 
 ViewWhichCardFileText:

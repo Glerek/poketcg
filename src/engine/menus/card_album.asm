@@ -236,8 +236,13 @@ CreateCardSetListAndInitListCoords:
 .GetEntryPrefix
 	push af
 	cp CARD_SET_PROMOTIONAL
-	jr nz, .laboratory
+	jr nz, .genesis
 	ldfw de, "P"
+	jr .got_prefix
+.genesis
+	cp CARD_SET_GENESIS
+	jr nz, .laboratory
+	ldfw de, "E"
 	jr .got_prefix
 .laboratory
 	cp CARD_SET_LABORATORY
@@ -750,8 +755,8 @@ CardAlbum:
 
 .BoosterPackMenuParams:
 	db 3, 3 ; cursor x, cursor y
-	db 2 ; y displacement between items
-	db 5 ; number of items
+	db 1 ; y displacement between items
+	db 6 ; number of items
 	db SYM_CURSOR_R ; cursor tile number
 	db SYM_SPACE ; tile behind cursor
 	dw NULL ; function pointer if non-0
@@ -802,9 +807,9 @@ CardAlbum:
 ; print the total number of cards that are in the Card Set
 	ld a, [wSelectedCardSet]
 	cp CARD_SET_PROMOTIONAL
-	jr nz, .check_laboratory
+	jr nz, .check_genesis
 ; promotional
-	ldtx hl, Item5PromotionalCardText
+	ldtx hl, Item6PromotionalCardText
 	ld e, NUM_CARDS_PROMOTIONAL - 2 ; minus the phantom cards
 	ld a, [wOwnedPhantomCardFlags]
 	bit VENUSAUR_OWNED_PHANTOM_F, a
@@ -814,6 +819,12 @@ CardAlbum:
 	bit MEW_OWNED_PHANTOM_F, a
 	jr z, .has_card_set_count
 	inc e
+	jr .has_card_set_count
+.check_genesis
+	cp CARD_SET_GENESIS
+	jr nz, .check_laboratory
+	ldtx hl, Item5GenesisText
+	ld e, NUM_CARDS_GENESIS
 	jr .has_card_set_count
 .check_laboratory
 	cp CARD_SET_LABORATORY
@@ -932,7 +943,7 @@ CardAlbum:
 	; still has no promotional, print empty Card Set name
 	ld a, TRUE
 	ld [wUnavailableAlbumCardSets + CARD_SET_PROMOTIONAL], a
-	ld e, 11
+	ld e, 8
 	ld d, 5
 	call InitTextPrinting
 	ldtx hl, EmptyPromotionalCardText
@@ -953,8 +964,9 @@ CardAlbum:
 .BoosterPacksMenuData
 	textitem 7,  1, BoosterPackTitleText
 	textitem 5,  3, Item1ColosseumText
-	textitem 5,  5, Item2EvolutionText
-	textitem 5,  7, Item3MysteryText
-	textitem 5,  9, Item4LaboratoryText
-	textitem 5, 11, Item5PromotionalCardText
+	textitem 5,  4, Item2EvolutionText
+	textitem 5,  5, Item3MysteryText
+	textitem 5,  6, Item4LaboratoryText
+	textitem 5,  7, Item5GenesisText
+	textitem 5,  8, Item6PromotionalCardText
 	db $ff
