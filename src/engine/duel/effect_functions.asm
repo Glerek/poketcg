@@ -11190,3 +11190,12 @@ HealPlayAreaCardHP:
 	add e
 	ld [hl], a
 	ret
+
+; During your next turn, cannot attack
+CannotAttackNextTurnEffect:
+	ld a, [wTempTurnDuelistCardID]
+	cp MIRAIDONEX
+	ret nz
+	ld a, SUBSTATUS1_NEXT_TURN_CANNOT_ATTACK
+	call ApplySubstatus1ToDefendingCard
+	ret

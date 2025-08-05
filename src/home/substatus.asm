@@ -287,7 +287,7 @@ HandleCantAttackSubstatus::
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS2
 	call GetTurnDuelistVariable
 	or a
-	ret z
+	jr z, .check_substatus3
 	ldtx hl, UnableToAttackDueToTailWagText
 	cp SUBSTATUS2_TAIL_WAG
 	jr z, .return_with_cant_attack
@@ -297,10 +297,17 @@ HandleCantAttackSubstatus::
 	ldtx hl, UnableToAttackDueToBoneAttackText
 	cp SUBSTATUS2_BONE_ATTACK
 	jr z, .return_with_cant_attack
-	or a
-	ret
+.check_substatus3
+	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
+	call GetTurnDuelistVariable
+	bit SUBSTATUS3_THIS_TURN_CANNOT_ATTACK_F, [hl]
+	jr z, .return_with_can_attack
+	ldtx hl, UnableToAttackDueToLastTurnAttackText
 .return_with_cant_attack
 	scf
+	ret
+.return_with_can_attack
+	xor a
 	ret
 
 ; return carry if the turn holder's arena Pokemon cannot use
@@ -689,10 +696,19 @@ UpdateSubstatusConditions_StartOfTurn::
 	or a
 	ret z
 	cp SUBSTATUS1_NEXT_TURN_DOUBLE_DAMAGE
-	ret nz
+	jr z, .setDoubleDamageFlag
+	cp SUBSTATUS1_NEXT_TURN_CANNOT_ATTACK
+	jr z, .setCannotAttackFlag
+	ret
+.setDoubleDamageFlag:
 	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
 	call GetTurnDuelistVariable
 	set SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE_F, [hl]
+	ret
+.setCannotAttackFlag:
+	ld a, DUELVARS_ARENA_CARD_SUBSTATUS3
+	call GetTurnDuelistVariable
+	set SUBSTATUS3_THIS_TURN_CANNOT_ATTACK_F, [hl]
 	ret
 
 ; clears the SUBSTATUS2, Headache, and updates the double damage condition of the player ending his turn
@@ -709,8 +725,15 @@ UpdateSubstatusConditions_EndOfTurn::
 	call GetTurnDuelistVariable
 	pop hl
 	cp SUBSTATUS1_NEXT_TURN_DOUBLE_DAMAGE
-	ret z
+	call nz, .clearDoubleDamageFlag
+	cp SUBSTATUS1_NEXT_TURN_CANNOT_ATTACK
+	call nz, .clearCannotAttackFlag
+	ret
+.clearDoubleDamageFlag:
 	res SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE_F, [hl]
+	ret
+.clearCannotAttackFlag:
+	res SUBSTATUS3_THIS_TURN_CANNOT_ATTACK_F, [hl]
 	ret
 
 ; return carry if turn holder has Blastoise and its Rain Dance Pkmn Power is active

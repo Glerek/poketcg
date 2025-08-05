@@ -2993,6 +2993,9 @@ TextOffsets::
 	textpointer RecycleDescription                                 ; 0x0bad
 	textpointer MiraidonExName
 	textpointer MiraidonExDescription
+	textpointer PhotonBlasterName
+	textpointer PhotonBlasterDescription
 	textpointer MiraidonCatName
 	textpointer Item5GenesisText
 	textpointer GenesisBoosterText
+	textpointer UnableToAttackDueToLastTurnAttackText

@@ -195,6 +195,15 @@ MiraidonExDescription:
 	line "unknown."
 	done
 
+PhotonBlasterName:
+	text "Photon Blaster"
+	done
+
+PhotonBlasterDescription:
+	text "During your next turn, this Pokémon"
+	line "can't attack."
+	done
+
 MiraidonCatName:
 	text "Future Dragon"
 	done
@@ -205,4 +214,9 @@ GenesisBoosterText:
 
 Item5GenesisText:
 	text "5. Genesis"
+	done
+
+UnableToAttackDueToLastTurnAttackText:
+	text "Unable to Attack due to"
+	line "the effects of previous attack."
 	done

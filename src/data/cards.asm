@@ -10236,13 +10236,13 @@ MiraidonExCard:
 	dw NONE ; pre-evo name
 
 	; attack 1
-	energy COLORLESS, 1 ; energies
-	tx TackleName ; name
-	dw NONE ; description
+	energy LIGHTNING, 2, COLORLESS, 1 ; energies
+	tx PhotonBlasterName ; name
+	tx PhotonBlasterDescription ; description
 	dw NONE ; description (cont)
-	db 10 ; damage
+	db 220 ; damage
 	db DAMAGE_NORMAL ; category
-	dw NONE ; effect commands
+	dw CannotAttackNextTurnEffectCommands ; effect commands
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
@@ -10267,7 +10267,7 @@ MiraidonExCard:
 	db WR_FIGHTING ; weakness
 	db NONE ; resistance
 	tx MiraidonCatName ; category
-	db 255 ; Pokedex number
+	db 0 ; Pokedex number
 	db 0
 	db 50 ; level
 	db 2, 11 ; length

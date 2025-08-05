@@ -977,6 +977,7 @@ ClearAllStatusConditions::
 	ld [hl], a
 	ld l, DUELVARS_ARENA_CARD_SUBSTATUS3
 	res SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE_F, [hl]
+	res SUBSTATUS3_THIS_TURN_CANNOT_ATTACK_F, [hl]
 	ld l, DUELVARS_ARENA_CARD_DISABLED_ATTACK_INDEX
 	ld [hli], a
 	ld [hli], a

@@ -1617,3 +1617,7 @@ GustOfWindEffectCommands:
 	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, GustOfWind_PlayerSelection
 	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, GustOfWind_SwitchEffect
 	db  $00
+
+CannotAttackNextTurnEffectCommands:
+	dbw EFFECTCMDTYPE_AFTER_DAMAGE, CannotAttackNextTurnEffect
+	db  $00
