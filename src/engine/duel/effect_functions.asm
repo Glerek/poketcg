@@ -702,6 +702,7 @@ LookForCardsInDeck:
 	dw .SearchDeckForBasicFighting
 	dw .SearchDeckForBasicEnergy
 	dw .SearchDeckForPokemon
+	dw .SearchDeckForBasicLightning
 
 .set_carry
 	scf
@@ -785,6 +786,22 @@ LookForCardsInDeck:
 	cp TYPE_ENERGY
 	jr nc, .loop_deck_pkmn
 	or a
+	ret
+
+; returns carry if no Basic Lightning Pokemon is found in Deck
+.SearchDeckForBasicLightning
+	ld hl, wDuelTempList
+.loop_deck_lightning
+	ld a, [hli]
+	cp $ff
+	jr z, .set_carry
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_PKMN_LIGHTNING
+	jr nz, .loop_deck_lightning
+	ld a, [wLoadedCard2Stage]
+	or a ; BASIC
+	jr nz, .loop_deck_lightning
 	ret
 
 ; handles the Player selection of attack
@@ -11199,3 +11216,58 @@ CannotAttackNextTurnEffect:
 	ld a, SUBSTATUS1_NEXT_TURN_CANNOT_ATTACK
 	call ApplySubstatus1ToDefendingCard
 	ret
+
+TandemUnit_PlayerSelection:
+	; create list of all Pokemon cards in deck to search for
+	call CreateDeckCardList
+	ldtx hl, ChooseBasicLightningPokemonToPlaceOnBenchText
+	ldtx bc, BasicLightingPokemonText
+	lb de, SEARCHEFFECT_BASIC_LIGHTNING, 0
+	call LookForCardsInDeck
+ 	jr c, .no_pkmn ; return if Player chose not to check deck
+
+; handle input
+	bank1call InitAndDrawCardListScreenLayout_WithSelectCheckMenu
+	ldtx hl, ChooseBasicLightningPokemonCardText
+	ldtx de, DuelistDeckText
+	bank1call SetCardListHeaderText
+.read_input
+	bank1call DisplayCardList
+	jr c, .no_pkmn ; B was pressed, check if Player can cancel operation
+	ldh a, [hTempCardIndex_ff98]
+	call LoadCardDataToBuffer2_FromDeckIndex
+	ld a, [wLoadedCard2Type]
+	cp TYPE_ENERGY
+	jr nc, .play_sfx ; can't select non-Pokemon card
+	ldh a, [hTempCardIndex_ff98]
+	ldh [hTempList + 1], a
+	or a
+	ret
+
+.no_pkmn
+	ld a, $ff
+	ldh [hTempList + 1], a
+	or a
+	ret
+
+.play_sfx
+	call PlaySFX_InvalidChoice
+	jr .read_input
+
+TandemUnit_PlaceInPlayAreaEffect:
+ 	ldh a, [hTempList + 1]
+ 	cp $ff
+ 	jr z, .done ; skip if no Pokemon was chosen
+
+ 	call SearchCardInDeckAndAddToHand
+ 	call AddCardToHand
+	call PutHandPokemonCardInPlayArea
+
+; display card
+ 	ldh a, [hTempList + 1]
+	ldtx hl, PlacedOnTheBenchText
+	bank1call DisplayCardDetailScreen
+
+.done
+	call ShuffleCardsInDeck
+ 	ret

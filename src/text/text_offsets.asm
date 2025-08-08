@@ -2999,3 +2999,8 @@ TextOffsets::
 	textpointer Item5GenesisText
 	textpointer GenesisBoosterText
 	textpointer UnableToAttackDueToLastTurnAttackText
+	textpointer TandemUnitName
+	textpointer TandemUnitDescription
+	textpointer ChooseBasicLightningPokemonToPlaceOnBenchText
+	textpointer ChooseBasicLightningPokemonCardText
+	textpointer BasicLightingPokemonText

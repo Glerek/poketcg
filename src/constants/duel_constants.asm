@@ -269,8 +269,9 @@ DEF PRIZES_6    EQU $06
 
 ; constants to use as input to LookForCardInDeck
 	const_def
-	const SEARCHEFFECT_CARD_ID        ; $0
-	const SEARCHEFFECT_NIDORAN        ; $1
-	const SEARCHEFFECT_BASIC_FIGHTING ; $2
-	const SEARCHEFFECT_BASIC_ENERGY   ; $3
-	const SEARCHEFFECT_POKEMON        ; $4
+	const SEARCHEFFECT_CARD_ID        	; $0
+	const SEARCHEFFECT_NIDORAN        	; $1
+	const SEARCHEFFECT_BASIC_FIGHTING 	; $2
+	const SEARCHEFFECT_BASIC_ENERGY   	; $3
+	const SEARCHEFFECT_POKEMON        	; $4
+	const SEARCHEFFECT_BASIC_LIGHTNING 	; $5

@@ -220,3 +220,28 @@ UnableToAttackDueToLastTurnAttackText:
 	text "Unable to Attack due to"
 	line "the effects of previous attack."
 	done
+
+TandemUnitName:
+	text "Tandem Unit"
+	done
+
+TandemUnitDescription:
+	text "Once during your turn, you may"
+	line "search your deck for 2 Basic"
+	line "lightning Pokémon and put them"
+	line "onto your Bench."
+	done
+
+ChooseBasicLightningPokemonToPlaceOnBenchText:
+	text "Choose a Basic Lightning Pokémon"
+	line "to place on the Bench."
+	done
+
+ChooseBasicLightningPokemonCardText:
+	text "Choose a basic"
+	line "lightning Pokémon card."
+	done
+
+BasicLightingPokemonText:
+	text "Basic Lightning Pokémon"
+	done

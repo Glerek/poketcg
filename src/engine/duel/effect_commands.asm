@@ -1621,3 +1621,10 @@ GustOfWindEffectCommands:
 CannotAttackNextTurnEffectCommands:
 	dbw EFFECTCMDTYPE_AFTER_DAMAGE, CannotAttackNextTurnEffect
 	db  $00
+
+TandemUnitEffectCommands:
+	; dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, Heal_OncePerTurnCheck TODO
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_1, PokeBall_DeckCheck
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, TandemUnit_PlayerSelection
+	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TandemUnit_PlaceInPlayAreaEffect
+	db  $00

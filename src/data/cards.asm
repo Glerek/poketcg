@@ -10236,6 +10236,20 @@ MiraidonExCard:
 	dw NONE ; pre-evo name
 
 	; attack 1
+	energy 0 ; energies
+	tx TandemUnitName ; name
+	tx TandemUnitDescription ; description
+	dw NONE ; description (cont)
+	db 0 ; damage
+	db POKEMON_POWER ; category
+	dw TandemUnitEffectCommands ; effect commands
+	db NONE ; flags 1
+	db NONE ; flags 2
+	db NONE ; flags 3
+	db 1
+	db ATK_ANIM_PKMN_POWER_1 ; animation
+
+	; attack 2
 	energy LIGHTNING, 2, COLORLESS, 1 ; energies
 	tx PhotonBlasterName ; name
 	tx PhotonBlasterDescription ; description
@@ -10247,21 +10261,7 @@ MiraidonExCard:
 	db NONE ; flags 2
 	db NONE ; flags 3
 	db 0
-	db ATK_ANIM_HIT ; animation
-
-	; attack 2
-	energy 0 ; energies
-	dw NONE ; name
-	dw NONE ; description
-	dw NONE ; description (cont)
-	db 0 ; damage
-	db DAMAGE_NORMAL ; category
-	dw NONE ; effect commands
-	db NONE ; flags 1
-	db NONE ; flags 2
-	db NONE ; flags 3
-	db 0
-	db ATK_ANIM_NONE ; animation
+	db ATK_ANIM_THUNDER ; animation
 
 	db 1 ; retreat cost
 	db WR_FIGHTING ; weakness
