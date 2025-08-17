@@ -11218,6 +11218,21 @@ CannotAttackNextTurnEffect:
 	ret
 
 TandemUnit_PlayerSelection:
+	; check available bench space to determine max selections
+	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
+	call GetTurnDuelistVariable
+	ld a, MAX_PLAY_AREA_POKEMON
+	sub [hl]  ; available bench space
+	jr z, .no_pkmn  ; no bench space available
+	cp 2
+	jr c, .set_max_one  ; if only 1 space, limit to 1
+	ld a, 2  ; can select up to 2
+	jr .store_max
+.set_max_one
+	ld a, 1  ; can only select 1
+.store_max
+	ldh [hTempList], a  ; store max selections allowed
+	
 	; create list of all Pokemon cards in deck to search for
 	call CreateDeckCardList
 	ldtx hl, ChooseBasicLightningPokemonToPlaceOnBenchText
@@ -11231,22 +11246,69 @@ TandemUnit_PlayerSelection:
 	ldtx hl, ChooseBasicLightningPokemonCardText
 	ldtx de, DuelistDeckText
 	bank1call SetCardListHeaderText
+	
+	; initialize selection tracking
+	xor a
+	ldh [hTempList + 3], a  ; current number of selected cards
+	ld a, $ff
+	ldh [hTempList + 1], a  ; first selected card (invalid initially)
+	ldh [hTempList + 2], a  ; second selected card (invalid initially)
+	
 .read_input
 	bank1call DisplayCardList
-	jr c, .no_pkmn ; B was pressed, check if Player can cancel operation
+	jr c, .done_selecting ; B was pressed, proceed with current selections
 	ldh a, [hTempCardIndex_ff98]
 	call LoadCardDataToBuffer2_FromDeckIndex
 	ld a, [wLoadedCard2Type]
 	cp TYPE_ENERGY
 	jr nc, .play_sfx ; can't select non-Pokemon card
+	
+	; check if we can select more
+	ldh a, [hTempList + 3]  ; current selection count
+	ld b, a
+	ldh a, [hTempList]      ; max allowed selections
+	cp b
+	jr z, .play_sfx         ; already at max, play error sound
+	jr c, .play_sfx         ; current > max somehow, play error sound
+	
+	; store the selected card
 	ldh a, [hTempCardIndex_ff98]
+	ld c, a                 ; save card index
+	ldh a, [hTempList + 3]  ; current selection count
+	ld b, a                 ; save current count
+	inc a
+	ldh [hTempList + 3], a  ; increment selection count
+	ld a, b                 ; restore original count for comparison
+	or a                    ; check if first selection (count was 0)
+	jr nz, .store_second
+	
+	; store first card (b was 0)
+	ld a, c                 ; restore card index
 	ldh [hTempList + 1], a
+	jr .check_if_done
+	
+.store_second
+	; store second card (b was 1)  
+	ld a, c                 ; restore card index
+	ldh [hTempList + 2], a
+	
+.check_if_done
+	ldh a, [hTempList + 3]  ; current selections
+	ld b, a
+	ldh a, [hTempList]      ; max selections
+	cp b
+	jr nz, .read_input      ; can select more
+	; reached max, auto-proceed
+	or a
+	ret
+	
+.done_selecting
 	or a
 	ret
 
 .no_pkmn
-	ld a, $ff
-	ldh [hTempList + 1], a
+	xor a
+	ldh [hTempList + 3], a  ; no selections
 	or a
 	ret
 
@@ -11255,16 +11317,28 @@ TandemUnit_PlayerSelection:
 	jr .read_input
 
 TandemUnit_PlaceInPlayAreaEffect:
- 	ldh a, [hTempList + 1]
- 	cp $ff
+ 	ldh a, [hTempList + 3]  ; number of selected cards
+ 	or a
  	jr z, .done ; skip if no Pokemon was chosen
 
+	; place first card if selected
+ 	ldh a, [hTempList + 1]
+ 	cp $ff
+ 	jr z, .check_second  ; no first card
  	call SearchCardInDeckAndAddToHand
  	call AddCardToHand
 	call PutHandPokemonCardInPlayArea
+	ldtx hl, PlacedOnTheBenchText
+	bank1call DisplayCardDetailScreen
 
-; display card
- 	ldh a, [hTempList + 1]
+.check_second
+	; place second card if selected  
+ 	ldh a, [hTempList + 2]
+ 	cp $ff
+ 	jr z, .done  ; no second card
+ 	call SearchCardInDeckAndAddToHand
+ 	call AddCardToHand
+	call PutHandPokemonCardInPlayArea
 	ldtx hl, PlacedOnTheBenchText
 	bank1call DisplayCardDetailScreen
 
