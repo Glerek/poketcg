@@ -11263,6 +11263,16 @@ TandemUnit_PlayerSelection:
 	cp TYPE_ENERGY
 	jr nc, .play_sfx ; can't select non-Pokemon card
 	
+	; check if this card was already selected
+	ldh a, [hTempCardIndex_ff98]
+	ld b, a
+	ldh a, [hTempList + 1]  ; first selected card
+	cp b
+	jr z, .play_sfx         ; already selected
+	ldh a, [hTempList + 2]  ; second selected card
+	cp b
+	jr z, .play_sfx         ; already selected
+	
 	; check if we can select more
 	ldh a, [hTempList + 3]  ; current selection count
 	ld b, a
