@@ -30,3 +30,4 @@
 
 # *disasm.py output file
 *disasm_output.asm
+.claude/settings.local.json

@@ -11328,6 +11328,7 @@ TandemUnit_PlaceInPlayAreaEffect:
  	call SearchCardInDeckAndAddToHand
  	call AddCardToHand
 	call PutHandPokemonCardInPlayArea
+	ldh a, [hTempList + 1]  ; restore deck index for display
 	ldtx hl, PlacedOnTheBenchText
 	bank1call DisplayCardDetailScreen
 
@@ -11339,6 +11340,7 @@ TandemUnit_PlaceInPlayAreaEffect:
  	call SearchCardInDeckAndAddToHand
  	call AddCardToHand
 	call PutHandPokemonCardInPlayArea
+	ldh a, [hTempList + 2]  ; restore deck index for display
 	ldtx hl, PlacedOnTheBenchText
 	bank1call DisplayCardDetailScreen
 
