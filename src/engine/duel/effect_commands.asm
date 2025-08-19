@@ -1628,3 +1628,8 @@ TandemUnitEffectCommands:
 	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, TandemUnit_PlayerSelection
 	dbw EFFECTCMDTYPE_BEFORE_DAMAGE, TandemUnit_PlaceInPlayAreaEffect
 	db  $00
+
+; Test effect commands to verify custom effects section works
+TestCustomEffectCommands:
+	dbw EFFECTCMDTYPE_INITIAL_EFFECT_2, TestCustomEffect
+	db  $00

@@ -52,7 +52,7 @@ CheckMatchingCommand::
 	push af
 	ld a, BANK(EffectCommands)
 	call BankswitchROM
-	; store the bank number of command functions ($b) in wEffectFunctionsBank
+	; set default bank for effect functions
 	ld a, BANK("Effect Functions")
 	ld [wEffectFunctionsBank], a
 .check_command_loop
@@ -69,8 +69,22 @@ CheckMatchingCommand::
 .matching_command_found
 	; load function pointer for this command
 	ld a, [hli]
-	ld h, [hl]
-	ld l, a
+	ld d, [hl]
+	ld e, a
+	; de now contains the function pointer
+	
+	; check if this function is in custom effects and update bank if needed
+	call IsCustomEffectFunction
+	jr nc, .use_standard_bank
+	
+	; function is in custom effects - update the bank
+	ld a, BANK("Custom Effects Functions")
+	ld [wEffectFunctionsBank], a
+	
+.use_standard_bank
+	; put function pointer back in hl
+	ld h, d
+	ld l, e
 	; restore bank and return nc
 	pop af
 	call BankswitchROM
@@ -82,4 +96,29 @@ CheckMatchingCommand::
 	pop af
 	call BankswitchROM
 	scf
+	ret
+
+; Helper function to determine if a function pointer is in custom effects
+; Input: de = function pointer to check
+; Output: carry set if custom effect, carry clear if standard effect
+IsCustomEffectFunction:
+	; For now, do a simple check against our known custom function
+	; In the future, you can expand this to check address ranges or maintain a list
+	
+	; Check if function pointer matches TestCustomEffect
+	ld hl, TestCustomEffect
+	ld a, l
+	cp e
+	jr nz, .not_custom
+	ld a, h
+	cp d
+	jr nz, .not_custom
+	
+	; This is our test custom effect
+	scf
+	ret
+	
+.not_custom
+	; This is a standard effect function
+	or a  ; clear carry
 	ret
