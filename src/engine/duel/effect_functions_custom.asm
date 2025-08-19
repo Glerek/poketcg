@@ -5,7 +5,7 @@
 CustomCardEffectBegin::
 
 ; During your next turn, cannot attack
-CannotAttackNextTurnEffect::
+CannotAttackNextTurnEffect:
 	ld a, [wTempTurnDuelistCardID]
 	cp MIRAIDONEX
 	ret nz
@@ -13,7 +13,7 @@ CannotAttackNextTurnEffect::
 	farcall ApplySubstatus1ToDefendingCard
 	ret
 
-TandemUnit_PlayerSelection::
+TandemUnit_PlayerSelection:
 	; check available bench space to determine max selections
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetTurnDuelistVariable
@@ -122,7 +122,7 @@ TandemUnit_PlayerSelection::
 	call PlaySFX_InvalidChoice
 	jr .read_input
 
-TandemUnit_PlaceInPlayAreaEffect::
+TandemUnit_PlaceInPlayAreaEffect:
  	ldh a, [hTempList + 3]  ; number of selected cards
  	or a
  	jr z, .done ; skip if no Pokemon was chosen
