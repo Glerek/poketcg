@@ -162,7 +162,7 @@ INCLUDE "engine/duel/ai/common.asm"
 SECTION "Effect Functions", ROMX
 INCLUDE "engine/duel/effect_functions.asm"
 
-SECTION "Custom Effects Function", ROMX
+SECTION "Custom Effects Functions", ROMX
 INCLUDE "engine/duel/effect_functions_custom.asm"
 
 SECTION "Decks", ROMX
