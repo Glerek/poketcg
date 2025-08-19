@@ -102,23 +102,38 @@ CheckMatchingCommand::
 ; Input: de = function pointer to check
 ; Output: carry set if custom effect, carry clear if standard effect
 IsCustomEffectFunction:
-	; For now, do a simple check against our known custom function
-	; In the future, you can expand this to check address ranges or maintain a list
+	; Check if function address falls within custom effects section range
+	; Custom effects are between CustomCardEffectBegin and CustomCardEffectEnd
 	
-	; Check if function pointer matches TestCustomEffect
-	ld hl, TestCustomEffect
-	ld a, l
-	cp e
-	jr nz, .not_custom
-	ld a, h
-	cp d
-	jr nz, .not_custom
+	; Check if address is >= start of custom effects
+	ld hl, CustomCardEffectBegin
+	ld a, d
+	cp h
+	jr c, .not_custom  ; de < hl, definitely not custom
+	jr nz, .check_upper_bound  ; de > hl, check upper bound
+	; high bytes equal, check low bytes
+	ld a, e
+	cp l
+	jr c, .not_custom  ; de < hl, not custom
 	
-	; This is our test custom effect
-	scf
-	ret
+.check_upper_bound
+	; Check if address is < end of custom effects section
+	ld hl, CustomCardEffectEnd
+	ld a, d
+	cp h
+	jr c, .is_custom  ; de < hl, within custom section
+	jr nz, .not_custom  ; de > hl, beyond custom section
+	; high bytes equal, check low bytes
+	ld a, e
+	cp l
+	jr c, .is_custom  ; de < hl, within custom section
 	
 .not_custom
 	; This is a standard effect function
 	or a  ; clear carry
+	ret
+	
+.is_custom
+	; This is a custom effect function
+	scf
 	ret

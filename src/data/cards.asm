@@ -10242,7 +10242,7 @@ MiraidonExCard:
 	dw NONE ; description (cont)
 	db 0 ; damage
 	db POKEMON_POWER ; category
-	dw TestCustomEffectCommands ; effect commands (temporarily testing custom effects infrastructure)
+	dw TandemUnitEffectCommands ; effect commands (temporarily testing custom effects infrastructure)
 	db NONE ; flags 1
 	db NONE ; flags 2
 	db NONE ; flags 3
